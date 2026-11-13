@@ -1,0 +1,168 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #F8F7FF;
+  --surface: #FFFFFF;
+  --surface-2: #F3F1FD;
+  --surface-glass: rgba(255, 255, 255, 0.75);
+  --border: rgba(99, 102, 241, 0.16);
+  --primary: #6366F1;
+  --primary-dim: #EEF2FF;
+  --teal: #14B8A6;
+  --pink: #EC4899;
+  --amber: #F59E0B;
+  --risk-low: #10B981;
+  --risk-mid: #F59E0B;
+  --risk-high: #EF4444;
+  --text-heading: #1E1B4B;
+  --text-body: #475569;
+  --text-muted: #64748B;
+}
+
+.dark {
+  --bg: #0F0B2E;
+  --surface: #181242;
+  --surface-2: #241C5C;
+  --surface-glass: rgba(24, 18, 66, 0.8);
+  --border: rgba(139, 92, 246, 0.28);
+  --primary: #818CF8;
+  --primary-dim: rgba(99, 102, 241, 0.22);
+  --teal: #2DD4BF;
+  --pink: #F472B6;
+  --amber: #FBBF24;
+  --risk-low: #34D399;
+  --risk-mid: #FBBF24;
+  --risk-high: #F87171;
+  --text-heading: #F8FAFC;
+  --text-body: #CBD5E1;
+  --text-muted: #94A3B8;
+}
+
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+  
+  body {
+    background-color: var(--bg);
+    color: var(--text-body);
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+    min-height: 100vh;
+    position: relative;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+    color: var(--text-heading);
+    letter-spacing: -0.025em;
+  }
+
+  p {
+    line-height: 1.68;
+  }
+
+  code, pre, .font-mono {
+    font-family: 'JetBrains Mono', monospace;
+  }
+}
+
+/* Glassmorphism helpers */
+.glass-panel {
+  background: var(--surface-glass);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--border);
+}
+
+.glass-pill {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+.dark .glass-pill {
+  background: rgba(24, 18, 66, 0.7);
+  border: 1px solid rgba(139, 92, 246, 0.25);
+}
+
+/* Vibrant Gradient Headline Accent: Indigo -> Pink -> Amber */
+.text-gradient-act {
+  background: linear-gradient(135deg, #6366F1 0%, #EC4899 52%, #F59E0B 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+.text-gradient-brand {
+  background: linear-gradient(135deg, #6366F1 0%, #8B5CF6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Accessible focus ring */
+:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+/* Reduced motion accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Sonar Scan Animation Keyframes (Indigo-Violet glow) */
+@keyframes sonar-ring {
+  0% {
+    transform: scale(1);
+    opacity: 0.65;
+  }
+  100% {
+    transform: scale(2.2);
+    opacity: 0;
+  }
+}
+
+.sonar-ring-1 {
+  animation: sonar-ring 2.4s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+}
+
+.sonar-ring-2 {
+  animation: sonar-ring 2.4s cubic-bezier(0, 0.2, 0.8, 1) infinite 600ms;
+}
+
+.sonar-ring-3 {
+  animation: sonar-ring 2.4s cubic-bezier(0, 0.2, 0.8, 1) infinite 1200ms;
+}
+
+/* Custom subtle scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border-radius: 9999px;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #3730A3;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94A3B8;
+}
